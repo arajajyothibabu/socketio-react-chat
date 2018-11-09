@@ -1,5 +1,7 @@
 
-const server = require('http').createServer.listen(3000);
+const server = require('http').createServer();
+
+server.listen(4000);
 
 const conn = require('./db').conn;
 const io = require('socket.io')(server);
