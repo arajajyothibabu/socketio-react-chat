@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
-const socket = io('http://localhost:3000');
+import {WS_HOST} from "../conf";
+const socket = io(WS_HOST);
 socket.connect();
 export default socket;

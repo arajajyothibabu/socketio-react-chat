@@ -1,18 +1,21 @@
 
 const server = require('http').createServer();
 
-server.listen(4000);
-
 const conn = require('./db').conn;
 const io = require('socket.io')(server);
+
+server.listen(3000);
+
 const { User, Conversation, Message } = require('./db').models;
 conn.sync({ logging: false, force: true });
 
 const mobileSockets = {};
 
 io.on('connection', socket => {
+    console.log("New socket connected...!");
     socket.on('newUser', credentials => {
         const { name, password } = credentials;
+        console.log(name);
         Promise.all([
             User.findOrCreate({
                 where: {
